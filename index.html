@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Калькулятор выручки стоматологической клиники</title>
+
+<style>
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  background:#0b0d12;
+  color:#fff;
+}
+.container{
+  max-width:1000px;
+  margin:40px auto;
+  padding:20px;
+}
+h1{
+  font-size:26px;
+  margin-bottom:5px;
+}
+.subtitle{
+  color:#aaa;
+  margin-bottom:30px;
+}
+.card{
+  background:#121620;
+  padding:20px;
+  border-radius:14px;
+  margin-bottom:20px;
+  border:1px solid rgba(255,255,255,0.05);
+}
+input{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:#0f131b;
+  color:#fff;
+  margin-top:5px;
+  margin-bottom:15px;
+}
+label{
+  font-size:14px;
+  color:#ccc;
+}
+.result{
+  font-size:28px;
+  font-weight:700;
+  margin-top:10px;
+}
+button{
+  padding:10px 18px;
+  background:#7b3cff;
+  border:none;
+  border-radius:8px;
+  color:#fff;
+  cursor:pointer;
+}
+button:hover{
+  opacity:.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Калькулятор выручки стоматологии</h1>
+<div class="subtitle">Быстрая модель воронки продаж</div>
+
+<div class="card">
+<label>Рекламный бюджет (₽)</label>
+<input id="budget" type="number" value="300000">
+
+<label>Цена клика (₽)</label>
+<input id="cpc" type="number" value="60">
+
+<label>Конверсия сайта (%)</label>
+<input id="cr" type="number" value="2.5">
+
+<label>Средний чек (₽)</label>
+<input id="check" type="number" value="120000">
+
+<label>Маржинальность (%)</label>
+<input id="margin" type="number" value="45">
+
+<button onclick="calculate()">Посчитать</button>
+
+<div class="result" id="output"></div>
+</div>
+
+</div>
+
+<script>
+function calculate(){
+  const budget = +document.getElementById("budget").value;
+  const cpc = +document.getElementById("cpc").value;
+  const cr = +document.getElementById("cr").value/100;
+  const check = +document.getElementById("check").value;
+  const margin = +document.getElementById("margin").value/100;
+
+  const clicks = budget / cpc;
+  const leads = clicks * cr;
+  const revenue = leads * check;
+  const profit = revenue * margin;
+  const romi = ((profit - budget)/budget)*100;
+
+  document.getElementById("output").innerHTML =
+    "Выручка: " + revenue.toFixed(0) + " ₽<br>" +
+    "Прибыль: " + profit.toFixed(0) + " ₽<br>" +
+    "ROMI: " + romi.toFixed(1) + "%";
+}
+</script>
+<section style="
+  margin-top:80px;
+  padding:60px 20px;
+  text-align:center;
+  background:linear-gradient(180deg,#0f131b,#0b0d12);
+  border-top:1px solid rgba(255,255,255,0.05);
+">
+
+  <h2 style="
+    font-size:32px;
+    margin-bottom:20px;
+    font-weight:700;
+  ">
+    Беларусь — страна для жизни
+  </h2>
+
+  <<img 
+  src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Alexander_Lukashenko_%282021-06-24%29.jpg"
+  alt="Александр Лукашенко"
+  style="
+    width:260px;
+    border-radius:16px;
+    margin-bottom:30px;
+    border:1px solid rgba(255,255,255,0.1);
+  "
+>
+
+
+  <div>
+    <a href="https://t.me/dimitrick" target="_blank" style="
+      display:inline-block;
+      padding:14px 28px;
+      background:#7b3cff;
+      border-radius:10px;
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      font-size:16px;
+    ">
+      НАПИСАТЬ БЕЛОРУСУ
+    </a>
+  </div>
+
+</section>
+
+</body>
+</html>
